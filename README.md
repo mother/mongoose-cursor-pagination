@@ -2,7 +2,7 @@
 
 ## Usage
 
-This plugin makes it easy to use cursor-based pagination in your app, without
+This dependency-free plugin makes it easy to use cursor-based pagination in your app, without
 changing the way you use mongoose.
 
 In your schema:
@@ -26,14 +26,20 @@ CommentSchema.plugin(paginationPlugin)
 In your application code:
 
 ```javascript
-const { results, pageInfo } = await Comment.find({})
-   .limit(30) // Use limit and other Query options as you normally would
-   .sort('author.lastName') // Use sort as you would normally do
-   .paginate(startCursor) // startCursor optional
-   .exec() // Required
+const { results, pageInfo } = await Comment
+   .find({})                 // Whatever filter you want
+   .limit(30)                // Use limit and other Query options as you normally would
+   .sort('author.lastName')  // Use sort as you would normally do
+   .paginate(startCursor)    // startCursor optional
+   .exec()                   // Required
 ```
+
+`results` will be the results that you would expect from a normal mongoose `find` query
 
 `pageInfo` will have two properties: `hasNext` and `nextCursor`
 
 ## To Do
+- Handle search
 - Support for aggregation
+- Support `exec` calls that use callbacks instead of promises
+- Ensure `lean` query modifier works

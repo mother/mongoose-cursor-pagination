@@ -17,7 +17,7 @@
     "graphql"
   ],
   "files": [
-    "index.js"
+    "lib/index.js"
   ],
   "scripts": {
     "lint": "git diff HEAD --name-only --diff-filter=ACM | grep '.js$' | xargs node ./node_modules/eslint/bin/eslint.js --quiet",

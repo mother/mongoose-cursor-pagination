@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+
 const Comment = mongoose.model('comment')
 
 describe('mongooseCursorPagination', () => {

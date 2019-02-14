@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const paginationPlugin = require('../../')
+const paginationPlugin = require('../../lib')
 
 const commentSchema = new mongoose.Schema({
    date: { type: Date, default: Date.now, required: true },
