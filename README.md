@@ -40,8 +40,8 @@ const { results, pageInfo } = await Comment
 
 ## To Do
 - Test against injection attacks
-- Handle search
-- Support for aggregation
-- Support `exec` calls that use callbacks instead of promises
+- Support for search with pagination
+- Support for aggregation with pagination
 - Support for hasPrev and prevCursor
+- Support `exec` calls that use callbacks instead of promises
 - Ensure `lean` query modifier works
