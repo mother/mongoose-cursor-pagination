@@ -22,8 +22,8 @@ describe('utils#generateCursorStr', () => {
    })
 
    it('Is able to serialize Dates', () => {
-      const cursorObj = { date: new Date('1995-12-17T03:24:00') }
+      const cursorObj = { date: new Date(Date.UTC(2012, 10, 5)) }
       const cursorStr = generateCursorStr(cursorObj, {})
-      expect(cursorStr).toBe(Buffer.from('date=819188640000').toString('base64'))
+      expect(cursorStr).toBe(Buffer.from('date=1352073600000').toString('base64'))
    })
 })

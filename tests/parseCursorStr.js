@@ -19,8 +19,8 @@ describe('utils#parseCursorStr', () => {
    })
 
    it('Is able to hydate Dates automatically', () => {
-      const cursorStr = Buffer.from('date=819188640000').toString('base64')
+      const cursorStr = Buffer.from('date=1352073600000').toString('base64')
       const cursorObj = parseCursorStr(cursorStr, commentSchema)
-      expect(cursorObj).toEqual({ date: new Date('1995-12-17T03:24:00') })
+      expect(cursorObj).toEqual({ date: new Date(Date.UTC(2012, 10, 5)) })
    })
 })
