@@ -39,6 +39,7 @@ const { results, pageInfo } = await Comment
 `pageInfo` will have two properties: `hasNext` and `nextCursor`
 
 ## To Do
+- Test against injection attacks
 - Handle search
 - Support for aggregation
 - Support `exec` calls that use callbacks instead of promises
