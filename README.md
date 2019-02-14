@@ -43,4 +43,5 @@ const { results, pageInfo } = await Comment
 - Handle search
 - Support for aggregation
 - Support `exec` calls that use callbacks instead of promises
+- Support for hasPrev and prevCursor
 - Ensure `lean` query modifier works

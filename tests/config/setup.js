@@ -8,7 +8,7 @@ let mongoServer
 beforeAll(async () => {
    mongoServer = new MongoMemoryServer()
    const mongoUri = await mongoServer.getConnectionString()
-   await mongoose.connect(mongoUri)
+   await mongoose.connect(mongoUri, { useNewUrlParser: true })
 })
 
 afterAll(() => {

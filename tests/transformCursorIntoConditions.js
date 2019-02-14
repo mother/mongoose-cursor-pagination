@@ -7,7 +7,7 @@ describe('utils#transformCursorIntoConditions', () => {
       const conditions = transformCursorIntoConditions({ cursorObj, sortObj })
 
       expect(conditions).toEqual([
-         { _id: { $lte: '5b06b90b42a0b29ba10f20c2' } }
+         { _id: { $lt: '5b06b90b42a0b29ba10f20c2' } }
       ])
    })
 
@@ -17,10 +17,10 @@ describe('utils#transformCursorIntoConditions', () => {
       const conditions = transformCursorIntoConditions({ cursorObj, sortObj })
 
       expect(conditions).toEqual([
-         { name: { $gte: 'Jane Doe' } },
+         { name: { $gt: 'Jane Doe' } },
          {
             name: 'Jane Doe',
-            _id: { $lte: '5b06b90b42a0b29ba10f20c2' }
+            _id: { $lt: '5b06b90b42a0b29ba10f20c2' }
          }
       ])
    })
@@ -35,15 +35,15 @@ describe('utils#transformCursorIntoConditions', () => {
 
       const conditions = transformCursorIntoConditions({ cursorObj, sortObj })
       expect(conditions).toEqual([
-         { timestamp: { $lte: 1550169401498 } },
+         { timestamp: { $lt: 1550169401498 } },
          {
             timestamp: 1550169401498,
-            name: { $gte: 'Jane Doe' }
+            name: { $gt: 'Jane Doe' }
          },
          {
             timestamp: 1550169401498,
             name: 'Jane Doe',
-            _id: { $lte: '5b06b90b42a0b29ba10f20c2' }
+            _id: { $lt: '5b06b90b42a0b29ba10f20c2' }
          }
       ])
    })

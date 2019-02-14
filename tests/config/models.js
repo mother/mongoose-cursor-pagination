@@ -10,6 +10,14 @@ const commentSchema = new mongoose.Schema({
    }
 })
 
+// Text index for full-text searching
+commentSchema.index({
+   body: 'text',
+   'author.firstName': 'text',
+   'author.lastName': 'text'
+})
+
+// Our very own pagination plugin
 commentSchema.plugin(paginationPlugin)
 
 mongoose.model('comment', commentSchema)
