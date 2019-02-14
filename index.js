@@ -52,8 +52,11 @@ module.exports = (schema, fieldMeta = {}) => {
    const parseCursor = (cursor) => {
       const cursorPlainText = Buffer.from(cursor, 'base64').toString()
       const cursorObj = querystring.parse(cursorPlainText)
-      Object.keys(fieldMeta).forEach((field) => {
-         cursorObj[field] = fieldMeta[field].fromCursor(cursorObj[field])
+
+      Object.keys(cursorObj).forEach((cursorKey) => {
+         if (typeof fieldMeta[cursorKey] === 'object') {
+            cursorObj[cursorKey] = fieldMeta[cursorKey].fromCursor(cursorObj[cursorKey])
+         }
       })
 
       return cursorObj
