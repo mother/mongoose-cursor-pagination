@@ -119,7 +119,7 @@ module.exports = (schema, fieldMeta = {}) => {
          }
 
          // Start Cursor
-         const start = query.__paginationPlugin.start
+         const { start } = query.__paginationPlugin
          if (typeof start !== 'undefined') {
             const cursorObj = parseCursor(start)
             const cursorKeys = Object.keys(cursorObj)
