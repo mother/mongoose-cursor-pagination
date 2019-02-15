@@ -28,7 +28,7 @@ describe('utils#applyConditionsToQuery', () => {
       expect(query.getQuery()).toMatchSnapshot()
    })
 
-   it('Works with multiple cursor keys when there is an $or condition in the query', () => {
+   it('Works with multiple cursor keys when there is an $or condition in the query', async () => {
       let query = Comment.find({
          $or: [
             { body: 'Test' },
@@ -38,9 +38,10 @@ describe('utils#applyConditionsToQuery', () => {
 
       query = applyConditionsToQuery(multiKeyCursorConditions, query)
       expect(query.getQuery()).toMatchSnapshot()
+      await query.exec()
    })
 
-   it('Works with multiple cursor keys when there is an $or and $and condition in the query', () => {
+   it('Works with multiple cursor keys when there is an $or and $and condition in the query', async () => {
       let query = Comment.find({
          $and: [
             { body: 'body is in an and' },
@@ -54,5 +55,6 @@ describe('utils#applyConditionsToQuery', () => {
 
       query = applyConditionsToQuery(multiKeyCursorConditions, query)
       expect(query.getQuery()).toMatchSnapshot()
+      await query.exec()
    })
 })
