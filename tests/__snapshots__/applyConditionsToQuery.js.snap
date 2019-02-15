@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`utils#applyConditionsToQuery Works with multiple cursor keys when there is an $or and $and condition in the query 1`] = `
+Object {
+  "$and": Array [
+    Object {
+      "body": "body is in an and",
+    },
+    Object {
+      "author.firstName": "Andy",
+    },
+    Object {
+      "$or": Array [
+        Object {
+          "body": "body is in an or",
+        },
+        Object {
+          "author.firstName": "Oreo",
+        },
+      ],
+    },
+    Object {
+      "$or": Array [
+        Object {
+          "author.lastName": Object {
+            "$gt": "Doe",
+          },
+        },
+        Object {
+          "_id": Object {
+            "$lt": "5b06b90b42a0b29ba10f20c2",
+          },
+          "author.lastName": "Doe",
+        },
+      ],
+    },
+  ],
+  "$or": Array [],
+}
+`;
+
+exports[`utils#applyConditionsToQuery Works with multiple cursor keys when there is an $or condition in the query 1`] = `
+Object {
+  "$and": Array [
+    Object {
+      "$or": Array [
+        Object {
+          "body": "Test",
+        },
+        Object {
+          "author.firstName": "Oreo",
+        },
+      ],
+    },
+    Object {
+      "$or": Array [
+        Object {
+          "author.lastName": Object {
+            "$gt": "Doe",
+          },
+        },
+        Object {
+          "_id": Object {
+            "$lt": "5b06b90b42a0b29ba10f20c2",
+          },
+          "author.lastName": "Doe",
+        },
+      ],
+    },
+  ],
+  "$or": Array [],
+}
+`;
+
+exports[`utils#applyConditionsToQuery Works with multiple cursor keys with no other $or query conditions 1`] = `
+Object {
+  "$or": Array [
+    Object {
+      "author.lastName": Object {
+        "$gt": "Doe",
+      },
+    },
+    Object {
+      "_id": Object {
+        "$lt": "5b06b90b42a0b29ba10f20c2",
+      },
+      "author.lastName": "Doe",
+    },
+  ],
+  "body": "Test",
+}
+`;
+
+exports[`utils#applyConditionsToQuery Works with single cursor keys 1`] = `
+Object {
+  "_id": Object {
+    "$lt": "5b06b90b42a0b29ba10f20c2",
+  },
+  "body": "Test",
+}
+`;
