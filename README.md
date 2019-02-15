@@ -27,7 +27,7 @@ const CommentSchema = new mongoose.Schema({
   }
 })
 
-CommentSchema.plugin(paginationPlugin, { defaultLimit: 50 })
+CommentSchema.plugin(paginationPlugin)
 ```
 
 In your application code:
@@ -45,6 +45,28 @@ const { results, pageInfo } = await Comment
 
 `pageInfo` will have two properties: `hasNext` and `nextCursor`
 
+Be sure to index correctly. Note that this plugin always add `_id` to the sort key to ensure cursors are unique, so include that in your index as well. For example, say you are using the `date` field for pagination, then you would want to setup the index:
+
+```js
+commentSchema.index({ date: -1, _id: -1 })
+```
+
+## Plugin Options
+
+You can optionally pass an options object to this plugin:
+
+```js
+CommentSchema.plugin(paginationPlugin, {
+   // If no limit is specified, and paginate() is being used,
+   // what should the default limit be.
+   defaultLimit: 100
+})
+```
+
+## Tests
+
+Numerous tests are included in the `tests` directory, and can be run using the command `npm test`.
+
 ## To Do
 - Support for search with pagination
 - Support for aggregation with pagination
@@ -52,3 +74,7 @@ const { results, pageInfo } = await Comment
 - Support `exec` calls that use callbacks instead of promises
 - Ensure `lean` query modifier works
 - More tests
+
+## License
+
+MIT
