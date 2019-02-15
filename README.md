@@ -1,9 +1,15 @@
 [![Build Status](https://travis-ci.org/mother/mongoose-cursor-pagination.svg?branch=master)](https://travis-ci.org/mother/mongoose-cursor-pagination)
 
-## Usage
-
 This dependency-free plugin makes it easy to use cursor-based pagination in your app, without
-changing the way you use mongoose.
+changing the way you use queries in mongoose.
+
+## Installation
+
+```npm install @mother/mongoose-cursor-pagination --save```
+
+Node.js 8.x or higher is required.
+
+## Usage
 
 In your schema:
 
@@ -20,7 +26,7 @@ const CommentSchema = new mongoose.Schema({
   }
 })
 
-CommentSchema.plugin(paginationPlugin)
+CommentSchema.plugin(paginationPlugin, { defaultLimit: 50 })
 ```
 
 In your application code:
@@ -39,9 +45,9 @@ const { results, pageInfo } = await Comment
 `pageInfo` will have two properties: `hasNext` and `nextCursor`
 
 ## To Do
-- Test against injection attacks
 - Support for search with pagination
 - Support for aggregation with pagination
-- Support for hasPrev and prevCursor
+- Support for `hasPrev` and `prevCursor`
 - Support `exec` calls that use callbacks instead of promises
 - Ensure `lean` query modifier works
+- More tests

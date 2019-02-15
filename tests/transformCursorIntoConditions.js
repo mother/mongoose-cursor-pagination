@@ -48,16 +48,15 @@ describe('utils#transformCursorIntoConditions', () => {
       ])
    })
 
-   // TODO: HANDLE EVILNESS
-   // it('Protects against injection', () => {
-   //    const sortObj = { timestamp: -1, name: 1, _id: -1 }
-   //    const cursorObj = {
-   //       $where: { evil: true },
-   //       name: 'Jane Doe',
-   //       _id: '5b06b90b42a0b29ba10f20c2'
-   //    }
-   //
-   //    const conditions = transformCursorIntoConditions({ cursorObj, sortObj })
-   //    console.log(conditions)
-   // })
+   it('Protects against injection and silliness', () => {
+      const sortObj = { timestamp: -1, name: 1, _id: -1 }
+      const cursorObj = {
+         $where: { evil: true },
+         name: 'Jane Doe',
+         _id: '5b06b90b42a0b29ba10f20c2'
+      }
+
+      expect(() => transformCursorIntoConditions({ cursorObj, sortObj }))
+         .toThrow('Sort keys and cursor keys must match')
+   })
 })
