@@ -68,12 +68,12 @@ CommentSchema.plugin(paginationPlugin, {
 Numerous tests are included in the `tests` directory, and can be run using the command `npm test`.
 
 ## To Do
+- Test against older versions of mongoose
 - Support for search with pagination
 - Support for aggregation with pagination
 - Support for `hasPrev` and `prevCursor`
 - Support `exec` calls that use callbacks instead of promises
 - Ensure `lean` query modifier works
-- More tests
 
 ## License
 

@@ -57,4 +57,10 @@ describe('utils#applyConditionsToQuery', () => {
       expect(query.getQuery()).toMatchSnapshot()
       await query.exec()
    })
+
+   it('Does not overwrite existing conditions on the same field', () => {
+      let query = Comment.find({ _id: { $gt: '5b06b90b42a0b29ba10f20b1' } })
+      query = applyConditionsToQuery(singleKeyCursorCondition, query)
+      expect(query.getQuery()).toMatchSnapshot()
+   })
 })

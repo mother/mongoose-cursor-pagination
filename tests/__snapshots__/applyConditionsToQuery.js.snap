@@ -1,5 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`utils#applyConditionsToQuery Does not overwrite existing conditions on the same field 1`] = `
+Object {
+  "_id": Object {
+    "$gt": "5b06b90b42a0b29ba10f20b1",
+    "$lt": "5b06b90b42a0b29ba10f20c2",
+  },
+}
+`;
+
 exports[`utils#applyConditionsToQuery Works with multiple cursor keys when there is an $or and $and condition in the query 1`] = `
 Object {
   "$and": Array [
