@@ -1,7 +1,8 @@
+# mongoose-cursor-pagination
+
 [![Build Status](https://travis-ci.org/mother/mongoose-cursor-pagination.svg?branch=master)](https://travis-ci.org/mother/mongoose-cursor-pagination)
 
-This dependency-free plugin makes it easy to use cursor-based pagination in your app, without
-changing the way you use queries in mongoose.
+This small plugin makes it easy to use cursor-based pagination in your app, without changing the way you use queries in mongoose.
 
 ## Installation
 
