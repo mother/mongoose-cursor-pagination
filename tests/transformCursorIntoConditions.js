@@ -48,15 +48,32 @@ describe('utils#transformCursorIntoConditions', () => {
       ])
    })
 
-   it('Protects against injection and silliness', () => {
-      const sortObj = { timestamp: -1, name: 1, _id: -1 }
-      const cursorObj = {
+   it('Cursor keys must be a subset of sort keys', () => {
+      let sortObj = { timestamp: -1, name: 1, _id: -1 }
+      let cursorObj = {
+         name: 'Jane Doe',
+         _id: '5b06b90b42a0b29ba10f20c2'
+      }
+
+      const conditions = transformCursorIntoConditions({ cursorObj, sortObj })
+      expect(conditions).toEqual([
+         { name: { $gt: 'Jane Doe' } },
+         {
+            name: 'Jane Doe',
+            _id: { $lt: '5b06b90b42a0b29ba10f20c2' }
+         }
+      ])
+
+      // Test that cursors from prevented from introducing new
+      // (and possibly evil) conditions in to the query
+      sortObj = { timestamp: -1, name: 1, _id: -1 }
+      cursorObj = {
          $where: { evil: true },
          name: 'Jane Doe',
          _id: '5b06b90b42a0b29ba10f20c2'
       }
 
       expect(() => transformCursorIntoConditions({ cursorObj, sortObj }))
-         .toThrow('Sort keys and cursor keys must match')
+         .toThrow('Cursor keys must be a subset of sort keys')
    })
 })
