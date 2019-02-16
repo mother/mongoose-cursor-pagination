@@ -45,7 +45,9 @@
       "pre-commit": "npm run lint && npm audit"
     }
   },
-  "dependencies": {},
+  "dependencies": {
+    "base64-url": "2.2.0"
+  },
   "devDependencies": {
     "eslint-config-mother": "^2.0.15",
     "eslint-plugin-jest": "^22.3.0",
