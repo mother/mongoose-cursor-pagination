@@ -8,7 +8,7 @@ This small plugin makes it easy to use cursor-based pagination in your app, with
 
 ```npm install @mother/mongoose-cursor-pagination --save```
 
-Node.js 8.x or higher is required.
+Node.js 10.x or higher is required.
 
 ## Usage
 
