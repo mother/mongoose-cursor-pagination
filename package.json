@@ -46,7 +46,8 @@
     }
   },
   "dependencies": {
-    "base64-url": "^2.3.3"
+    "base64-url": "^2.3.3",
+    "lodash.get": "^4.4.2"
   },
   "devDependencies": {
     "eslint-config-mother": "^2.0.15",
