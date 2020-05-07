@@ -8,18 +8,17 @@ describe('mongooseCursorPagination', () => {
    })
 
    it('Works as expected', async () => {
-      await Comment.create([
-         {
-            body: '1',
-            'author.firstName': 'Jane',
-            'author.lastName': 'Doe'
-         },
-         {
-            body: '2',
-            'author.firstName': 'Jane',
-            'author.lastName': 'Doe'
-         }
-      ])
+      await Comment.create({
+         body: '1',
+         'author.firstName': 'Jane',
+         'author.lastName': 'Doe'
+      })
+
+      await Comment.create({
+         body: '2',
+         'author.firstName': 'Jane',
+         'author.lastName': 'Doe'
+      })
 
       const { results, pageInfo } = await Comment
          .find({})
@@ -45,18 +44,17 @@ describe('mongooseCursorPagination', () => {
    })
 
    it('Works with lean', async () => {
-      await Comment.create([
-         {
-            body: '1',
-            'author.firstName': 'Jane',
-            'author.lastName': 'Doe'
-         },
-         {
-            body: '2',
-            'author.firstName': 'Jane',
-            'author.lastName': 'Doe'
-         }
-      ])
+      await Comment.create({
+         body: '1',
+         'author.firstName': 'Jane',
+         'author.lastName': 'Doe'
+      })
+
+      await Comment.create({
+         body: '2',
+         'author.firstName': 'Jane',
+         'author.lastName': 'Doe'
+      })
 
       const { results, pageInfo } = await Comment
          .find({})
