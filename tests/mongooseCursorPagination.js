@@ -3,19 +3,22 @@ const mongoose = require('mongoose')
 const Comment = mongoose.model('comment')
 
 describe('mongooseCursorPagination', () => {
+   beforeEach(async () => {
+      await Comment.remove({})
+   })
+
    it('Works as expected', async () => {
-      await Comment.create([
-         {
-            body: '1',
-            'author.firstName': 'Jane',
-            'author.lastName': 'Doe'
-         },
-         {
-            body: '2',
-            'author.firstName': 'Jane',
-            'author.lastName': 'Doe'
-         }
-      ])
+      await Comment.create({
+         body: '1',
+         'author.firstName': 'Jane',
+         'author.lastName': 'Doe'
+      })
+
+      await Comment.create({
+         body: '2',
+         'author.firstName': 'Jane',
+         'author.lastName': 'Doe'
+      })
 
       const { results, pageInfo } = await Comment
          .find({})
@@ -32,6 +35,44 @@ describe('mongooseCursorPagination', () => {
          .find({})
          .limit(1)
          .sort('-date')
+         .paginate(pageInfo.nextCursor)
+         .exec()
+
+      expect(results2).toHaveLength(1)
+      expect(results2[0].body).toBe('1')
+      expect(pageInfo2.hasNext).toEqual(false)
+   })
+
+   it('Works with lean', async () => {
+      await Comment.create({
+         body: '1',
+         'author.firstName': 'Jane',
+         'author.lastName': 'Doe'
+      })
+
+      await Comment.create({
+         body: '2',
+         'author.firstName': 'Jane',
+         'author.lastName': 'Doe'
+      })
+
+      const { results, pageInfo } = await Comment
+         .find({})
+         .limit(1)
+         .sort('-date')
+         .lean()
+         .paginate()
+         .exec()
+
+      expect(results).toHaveLength(1)
+      expect(results[0].body).toBe('2')
+      expect(pageInfo.hasNext).toBe(true)
+
+      const { results: results2, pageInfo: pageInfo2 } = await Comment
+         .find({})
+         .limit(1)
+         .sort('-date')
+         .lean()
          .paginate(pageInfo.nextCursor)
          .exec()
 
