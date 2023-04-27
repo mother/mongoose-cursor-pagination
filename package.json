@@ -1,6 +1,6 @@
 {
   "name": "@mother/mongoose-cursor-pagination",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Easy-to-use, scalable, cursor pagination plugin for mongoose",
   "license": "MIT",
   "homepage": "https://github.com/mother/mongoose-cursor-pagination#readme",
