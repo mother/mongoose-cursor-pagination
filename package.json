@@ -45,10 +45,6 @@
       "pre-commit": "npm run lint && npm audit"
     }
   },
-  "dependencies": {
-    "base64-url": "^2.3.3",
-    "lodash.get": "^4.4.2"
-  },
   "devDependencies": {
     "eslint-config-mother": "^2.0.15",
     "eslint-plugin-jest": "^23.9.0",
@@ -58,6 +54,10 @@
     "mongoose": "^5.13.6"
   },
   "peerDependencies": {
-    "mongoose": "^5.0.0"
+    "mongoose": ">=5.0.0"
+  },
+  "dependencies": {
+    "base64-url": "^2.3.3",
+    "lodash.get": "^4.4.2"
   }
 }
